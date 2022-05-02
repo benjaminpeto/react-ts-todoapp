@@ -1,0 +1,50 @@
+.input {
+  display: flex;
+  width: 40%;
+  position: relative;
+  align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 25px;
+  padding: 15px 25px;
+  font-size: 20px;
+  border: none;
+  transition: 3ms;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 10px 1000px rgba(0,0,0,0.5);
+  outline: none;
+}
+
+.input-btn {
+  position: absolute;
+  width: 80px;
+  height: 53px;
+  margin: 12px;
+  border-radius: 30px;
+  right: -12px;
+  border: none;
+  font-size: 18px;
+  background-color: rgb(162, 220, 45);
+  color: rgb(25, 25, 25);
+  transition: 0.2s all;
+  cursor: pointer;
+}
+
+.input-btn:hover {
+  background-color: rgb(124, 173, 26);
+}
+
+.input-btn:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px 15px rgb(124, 173, 26);
+}
+
+@media (max-width: 768px) {
+  .input {
+    width: 90%;
+  }
+}
