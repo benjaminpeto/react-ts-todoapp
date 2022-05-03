@@ -1,0 +1,43 @@
+.single-todo {
+  display: flex;
+  width: 30%;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #5BC0BE;
+}
+
+.single-todo-text {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+  background-color: #5BC0BE;
+}
+
+.single-todo-text:focus {
+  outline: solid 1px #3A506B;
+  border-radius: 5px;
+}
+
+.icons-container {
+  margin-top: 4px;
+}
+
+.icons {
+  margin-left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .single-todo {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .single-todo {
+    width: 100%;
+  }
+}
