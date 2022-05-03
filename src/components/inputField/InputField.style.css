@@ -21,26 +21,26 @@
 
 .input-btn {
   position: absolute;
-  width: 80px;
+  width: 85px;
   height: 53px;
   margin: 12px;
   border-radius: 30px;
   right: -12px;
   border: none;
   font-size: 18px;
-  background-color: #6FFFE9;
+  background-color: #ffb703;
   color: rgb(25, 25, 25);
   transition: 0.2s all;
   cursor: pointer;
 }
 
 .input-btn:hover {
-  background-color: #5BC0BE;
+  background-color: #fb8500;
 }
 
 .input-btn:active {
   transform: scale(0.95);
-  box-shadow: 1px 1px 15px #5BC0BE;
+  box-shadow: 1px 1px 15px #fb8500;
 }
 
 @media (max-width: 768px) {
