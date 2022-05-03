@@ -26,6 +26,14 @@
   background-color: #2D7372;
 }
 
+.dragactive {
+  background-color: #5E7FA8;
+}
+
+.dragcomplete {
+  background-color: #89D1D0;
+}
+
 @media (max-width: 1100px) {
   .todos-pending {
     width: 45%;
