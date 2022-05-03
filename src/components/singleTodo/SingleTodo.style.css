@@ -36,6 +36,18 @@
   cursor: pointer;
 }
 
+.icon-edit {
+  color: #3a506b;
+}
+
+.icon-delete {
+  color: #f94144;
+}
+
+.icon-done {
+  color: #4d908e;
+}
+
 .drag {
   box-shadow: 0 0 20px rgba(0, 0, 0);
 }

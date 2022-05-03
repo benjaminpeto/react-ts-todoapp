@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
+import { GrSend } from 'react-icons/gr'
 import './InputField.style.css';
 
 interface Props {
@@ -24,7 +25,7 @@ export const InputField = ({ todo, setTodo,handleAddTodo }: Props) => {
         value={todo}
         onChange={(event) => setTodo(event.target.value)}>
       </input>
-      <button className='input-btn' type="submit">Enter</button>
+      <button className='input-btn' type="submit"><GrSend className='send' /></button>
     </form>
   )
 };

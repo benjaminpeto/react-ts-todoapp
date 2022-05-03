@@ -73,7 +73,7 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
             }
             <div className='icons-container'>
               <span
-                className='icons'
+                className='icons icon-edit'
                 onClick={() => {
                   if(!edit && !todo.isDone) {
                     setEdit(!edit)
@@ -82,8 +82,8 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
               >
                 <AiFillEdit />
               </span>
-              <span className='icons' onClick={() => handleDelete(todo.id)}><AiFillDelete /></span>
-              <span className='icons' onClick={() => handleDone(todo.id)}><MdDone /></span>
+              <span className='icons icon-delete' onClick={() => handleDelete(todo.id)}><AiFillDelete /></span>
+              <span className='icons icon-done' onClick={() => handleDone(todo.id)}><MdDone /></span>
             </div>
           </form>
         )

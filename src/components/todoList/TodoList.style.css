@@ -8,7 +8,7 @@
 
 .todos-pending {
   display: flex;
-  width: 47.5%;
+  width: 46.5%;
   flex-direction: column;
   padding: 15px;
   border-radius: 10px;
