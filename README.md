@@ -12,7 +12,7 @@ I learnt how to use types, interfaces, methods and hooks. Still a lot to learn..
 
 ## Bugs
 
-  Currently on the main branch the project uses the latest (18.0.1) React library, which is not supported yet for the react-beautiful-dnd, and the drag and drop feature didn't work as expected.
+  The latest (18.0.1) React library is not supported yet for the react-beautiful-dnd, and the drag and drop feature didn't work as expected.
   After some consideration I had to downgrade the version of React to 17.0.2 which you can find on the other branch with its respective name. This version of the app runs smoothly without that bug.
 
 ### For the live project, please click [here](https://benjaminpeto.github.io/react-ts-todoapp/)
