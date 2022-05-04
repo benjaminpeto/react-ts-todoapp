@@ -1,12 +1,12 @@
-import SingleTodoContainer from '../singleTodoContainer/SingleTodoContainer';
+import useTodosContainer from '../useTodosContainer/useTodosContainer';
 import { Draggable } from 'react-beautiful-dnd';
-import type { Props } from '../singleTodoContainer/SingleTodoContainer';
+import type { Props } from '../useTodosContainer/useTodosContainer';
 // Styling + Icons
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { MdDone } from 'react-icons/md';
 import './SingleTodo.style.css';
 
-const SingleTodo = ({ index, todo }: Props) => {
+const SingleTodo: React.FC<Props> = ({ index, todo, todos, setTodos }: Props) => {
 
   const { setEditTodo,
           handleDone,
@@ -15,7 +15,7 @@ const SingleTodo = ({ index, todo }: Props) => {
           inputRef,
           editTodo,
           edit,
-          setEdit } = SingleTodoContainer();
+          setEdit } = useTodosContainer({index, todo, todos, setTodos});
 
   return (
     <Draggable draggableId={todo.id.toString()} index={index}>
