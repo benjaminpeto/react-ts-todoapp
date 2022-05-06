@@ -3,14 +3,12 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import './App.css';
 
 import { InputField } from './components/inputField/InputField';
-import  TodoList from './components/todoList/TodoList';
-import { Todo } from './model';
-
+import  TodoList from './components/TodoList';
+import { Todo } from './types/todo';
 
 const App: React.FC = () => {
-
   const [todo, setTodo] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]); // All of the todos
+  const [todos, setTodos] = useState<Todo[]>([]); 
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
 
   const handleAddTodo = (e: React.FormEvent) => {
