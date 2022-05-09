@@ -1,15 +1,31 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Todo } from "../types/todo";
+import React, { useRef, useState, useEffect, createContext, useContext } from "react";
+import { TodoProps, Todo } from "../types/todo";
 
-export type Props = {
-  todo: Todo;
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>; //(value: Todo[] ) => void;
-};
+const TodoContext = createContext({} as TodoProps);
 
-const useTodos = ({ todo, todos, setTodos }: Props) => {
+export const useTodos = () => {
+  return useContext(TodoContext);
+}
+
+/* const useTodos = ({ todo, todos, setTodos }: TodoProps) => {
   const [edit, setEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<string>(todo.todo);
+  const [editTodo, setEditTodo] = useState<string>(todo.todo); */
+
+export const TodoProvider = ({children}: Todo) => {
+  const [edit, setEdit] = useState<boolean>(false);
+  const [editTodo, setEditTodo] = useState<Todo[]>([]);
+  const [todo, setTodo] = useState<string>('');
+  const [todos, setTodos] = useState<Todo[]>([]); 
+  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+
+  const handleAddTodo = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if(todo) {
+      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      setTodo('');
+    }
+  };
 
   const handleDone = (id: number) => {
     setTodos(
@@ -39,16 +55,25 @@ const useTodos = ({ todo, todos, setTodos }: Props) => {
     inputRef.current?.focus();
   }, [edit]);
 
-  return {
-    setEditTodo,
-    handleDone,
-    handleDelete,
-    handleEdit,
-    inputRef,
-    editTodo,
-    edit,
-    setEdit,
-  };
+  return (
+    <TodoContext.Provider
+      value={{
+        setEditTodo,
+        handleDone,
+        handleDelete,
+        handleEdit,
+        inputRef,
+        editTodo,
+        edit,
+        setEdit,
+        completedTodos,
+        setCompletedTodos,
+        handleAddTodo,
+      }}
+    >
+      {children}
+    </TodoContext.Provider>
+  );
 };
 
-export default useTodos;
+/* export default useTodos; */
