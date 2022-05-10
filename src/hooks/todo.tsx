@@ -1,31 +1,26 @@
 import React, { useRef, useState, useEffect, createContext, useContext } from "react";
-import { TodoProps, Todo } from "../types/todo";
+import { Todo, TodoProviderType, TodoContextType } from "../types/todo";
 
-const TodoContext = createContext({} as TodoProps);
+const TodoContext = createContext({} as TodoContextType);
 
 export const useTodos = () => {
   return useContext(TodoContext);
 }
 
-/* const useTodos = ({ todo, todos, setTodos }: TodoProps) => {
-  const [edit, setEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<string>(todo.todo); */
-
-export const TodoProvider = ({children}: Todo) => {
+export const TodoProvider = ({children}: TodoProviderType) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<Todo[]>([]);
-  const [todo, setTodo] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]); 
-  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+  /* const [todo, setTodo] = useState<string>('');
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if(todo) {
+    if(todos) {
       setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
       setTodo('');
     }
-  };
+  }; */
 
   const handleDone = (id: number) => {
     setTodos(
@@ -43,7 +38,7 @@ export const TodoProvider = ({children}: Todo) => {
     event.preventDefault();
 
     setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
+      todos.map((todo) => (todo.id === id ? { ...todo, /* todo: */ editTodo } : todo))
     );
     setEdit(false);
   };
@@ -58,17 +53,16 @@ export const TodoProvider = ({children}: Todo) => {
   return (
     <TodoContext.Provider
       value={{
+        edit,
+        editTodo,
+        setEdit,
         setEditTodo,
+        inputRef,
+        todos,
+        setTodos,
         handleDone,
         handleDelete,
-        handleEdit,
-        inputRef,
-        editTodo,
-        edit,
-        setEdit,
-        completedTodos,
-        setCompletedTodos,
-        handleAddTodo,
+        handleEdit
       }}
     >
       {children}

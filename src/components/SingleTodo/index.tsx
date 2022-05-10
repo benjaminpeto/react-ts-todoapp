@@ -3,8 +3,8 @@ import { Draggable } from "react-beautiful-dnd";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 import "./style.css";
-import useTodos from "../../hooks/todo";
 import { Todo } from "../../types/todo";
+import { TodoProvider, useTodos } from "../../hooks/todo";
 
 interface SingleTodoProps {
   index: number;
@@ -16,21 +16,21 @@ interface SingleTodoProps {
 const SingleTodo: React.FC<SingleTodoProps> = ({
   index,
   todo,
-  todos,
-  setTodos,
 }: SingleTodoProps) => {
   const {
-    setEditTodo,
-    handleDone,
-    handleDelete,
-    handleEdit,
     inputRef,
-    editTodo,
     edit,
+    editTodo,
     setEdit,
-  } = useTodos({ todo, todos, setTodos });
+    setEditTodo,
+    handleEdit,
+    handleDelete,
+    handleDone
+  } = useTodos();
 
   return (
+    <TodoProvider>
+
     <Draggable draggableId={todo.id.toString()} index={index}>
       {(provided, snapshot) => (
         <form
@@ -43,7 +43,7 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
           {edit ? (
             <input
               ref={inputRef}
-              value={editTodo}
+              value={editTodo.map(todo => todo.todo)}
               onChange={(event) => setEditTodo(event.target.value)}
               className="single-todo-text"
             />
@@ -79,6 +79,7 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
         </form>
       )}
     </Draggable>
+    </TodoProvider>
   );
 };
 

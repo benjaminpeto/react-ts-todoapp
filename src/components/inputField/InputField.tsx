@@ -1,14 +1,15 @@
 import React, { useRef } from 'react';
 import { GrSend } from 'react-icons/gr'
+
 import './InputField.style.css';
 
 interface Props {
   todo: string;
   setTodo: React.Dispatch<React.SetStateAction<string>>; //What the heck, at least VSCode helps to figure out what types I need
-  handleAddTodo: (e: React.FormEvent) => void;
+  handleAddTodo: (e: React.FormEvent<HTMLFormElement>) => void;/* (e: React.FormEvent) => void; */
 }
 
-export const InputField = ({ todo, setTodo,handleAddTodo }: Props) => {
+export const InputField = ({ todo, setTodo, handleAddTodo }: Props) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
