@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import { Todo } from './types/todo';
-import { TodoProvider, useTodos } from './hooks/todo';
+import { useTodos } from './hooks/todo';
 import { InputField } from './components/inputField/InputField';
 import  TodoList from './components/TodoList';
 
@@ -16,9 +16,6 @@ const App: React.FC = () => {
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(todo);
-    console.log(todos);
-
     if(todo) {
       setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
       setTodo('');
@@ -55,7 +52,6 @@ const App: React.FC = () => {
   }
 
   return (
-    <TodoProvider>
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
         <h1 className="heading">To Do App</h1>
@@ -68,7 +64,6 @@ const App: React.FC = () => {
           />
       </div>
     </DragDropContext>
-    </TodoProvider>
   );
 }
 
