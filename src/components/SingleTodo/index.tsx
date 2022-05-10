@@ -43,7 +43,7 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
           {edit ? (
             <input
               ref={inputRef}
-              value={editTodo.map(todo => todo.todo)}
+              value={editTodo}
               onChange={(event) => setEditTodo(event.target.value)}
               className="single-todo-text"
             />

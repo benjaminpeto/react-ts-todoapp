@@ -15,19 +15,8 @@ export const useTodos = () => {
 
 export const TodoProvider = ({ children }: TodoProviderType) => {
   const [edit, setEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<Todo[]>([]);
+  const [editTodo, setEditTodo] = useState<string>(''); // needs to be fixed !
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  /* const [todo, setTodo] = useState<string>('');
-
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if(todos) {
-      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
-      setTodo('');
-    }
-  }; */
 
   const handleDone = (id: number) => {
     setTodos(
