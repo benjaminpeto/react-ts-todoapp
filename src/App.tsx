@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import React from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 
-import { Todo } from './types/todo';
-import { useTodos } from './hooks/todo';
-import { InputField } from './components/inputField/InputField';
+import { useTodos } from './hooks/useTodo';
+import { InputField } from './components/inputField/index';
 import  TodoList from './components/TodoList';
 
 import './App.css';
 
 const App: React.FC = () => {
-  const { todos, setTodos } = useTodos();
+  const {
+    todos,
+    setTodos,
+    onDragEnd,
+    todo,
+    setTodo,
+    handleAddTodo,
+    completedTodos,
+    setCompletedTodos } = useTodos();
 
-  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+
+  /* const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
   const [todo, setTodo] = useState<string>('');
 
   const handleAddTodo = (e: React.FormEvent) => {
@@ -49,7 +57,7 @@ const App: React.FC = () => {
 
     setCompletedTodos(complete);
     setTodos(active);
-  }
+  } */
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

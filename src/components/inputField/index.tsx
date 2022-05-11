@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { GrSend } from 'react-icons/gr'
 
-import './InputField.style.css';
+import './style.css';
 
 interface Props {
   todo: string;

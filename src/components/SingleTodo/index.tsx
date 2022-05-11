@@ -1,10 +1,11 @@
+import { useRef, useEffect } from "react";
 import { MdDone } from "react-icons/md";
 import { Draggable } from "react-beautiful-dnd";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 import "./style.css";
 import { Todo } from "../../types/todo";
-import { TodoProvider, useTodos } from "../../hooks/todo";
+import { useTodos } from "../../hooks/useTodo";
 
 interface SingleTodoProps {
   index: number;
@@ -18,19 +19,23 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
   todo,
 }: SingleTodoProps) => {
   const {
-    inputRef,
-    edit,
+    isEdit,
     editTodo,
-    setEdit,
+    setIsEdit,
     setEditTodo,
     handleEdit,
     handleDelete,
-    handleDone
+    handleDone,
   } = useTodos();
 
-  return (
-    <TodoProvider>
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  // enable focus on, to be able to write in the input immediately
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isEdit]);
+
+  return (
     <Draggable draggableId={todo.id.toString()} index={index}>
       {(provided, snapshot) => (
         <form
@@ -40,7 +45,7 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          {edit ? (
+          {isEdit ? (
             <input
               ref={inputRef}
               value={editTodo}
@@ -56,8 +61,8 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
             <span
               className="icons icon-edit"
               onClick={() => {
-                if (!edit && !todo.isDone) {
-                  setEdit(!edit);
+                if (!isEdit && !todo.isDone) {
+                  setIsEdit(!isEdit);
                 }
               }}
             >
@@ -79,7 +84,6 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
         </form>
       )}
     </Draggable>
-    </TodoProvider>
   );
 };
 
