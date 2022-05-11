@@ -1,14 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Todo } from "../types/todo";
 
-export type Props = {
+export type useTodoProps = {
   todo: Todo;
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>; //(value: Todo[] ) => void;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
-const useTodos = ({ todo, todos, setTodos }: Props) => {
-  const [edit, setEdit] = useState<boolean>(false);
+const useTodos = ({ todo, todos, setTodos }: useTodoProps) => {
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
   const handleDone = (id: number) => {
@@ -29,7 +29,7 @@ const useTodos = ({ todo, todos, setTodos }: Props) => {
     setTodos(
       todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
     );
-    setEdit(false);
+    setIsEdit(false);
   };
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -37,7 +37,7 @@ const useTodos = ({ todo, todos, setTodos }: Props) => {
   // enable focus on, to be able to write in the input immediately
   useEffect(() => {
     inputRef.current?.focus();
-  }, [edit]);
+  }, [isEdit]);
 
   return {
     setEditTodo,
@@ -46,8 +46,8 @@ const useTodos = ({ todo, todos, setTodos }: Props) => {
     handleEdit,
     inputRef,
     editTodo,
-    edit,
-    setEdit,
+    isEdit,
+    setIsEdit,
   };
 };
 

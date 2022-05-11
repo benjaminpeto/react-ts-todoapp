@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 import "./style.css";
-import useTodos from "../../hooks/todo";
+import useTodos from "../../hooks/useTodo";
 import { Todo } from "../../types/todo";
 
 interface SingleTodoProps {
@@ -26,8 +26,8 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
     handleEdit,
     inputRef,
     editTodo,
-    edit,
-    setEdit,
+    isEdit,
+    setIsEdit,
   } = useTodos({ todo, todos, setTodos });
 
   return (
@@ -40,7 +40,7 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          {edit ? (
+          {isEdit ? (
             <input
               ref={inputRef}
               value={editTodo}
@@ -56,8 +56,8 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
             <span
               className="icons icon-edit"
               onClick={() => {
-                if (!edit && !todo.isDone) {
-                  setEdit(!edit);
+                if (!isEdit && !todo.isDone) {
+                  setIsEdit(!isEdit);
                 }
               }}
             >

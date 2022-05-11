@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import './App.css';
 
-import { InputField } from './components/inputField/InputField';
+import { InputField } from './components/inputField';
 import  TodoList from './components/TodoList';
 import { Todo } from './types/todo';
 
