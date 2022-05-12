@@ -1,4 +1,5 @@
 import React from "react";
+import { DropResult } from "react-beautiful-dnd";
 
 export type TodoType = {
   id: number;
@@ -13,6 +14,8 @@ export type TodoContextType = {
   setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
   completedTodos: TodoType[];
   setCompletedTodos:  React.Dispatch<React.SetStateAction<TodoType[]>>;
+  handleAddTodo: (e: React.FormEvent) => void;
+  onDragEnd: (result: DropResult) => void;
 };
 
 export type TodoProviderType = {
