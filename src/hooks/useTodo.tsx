@@ -1,54 +1,31 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Todo } from "../types/todo";
+import { useState, createContext, useContext } from "react";
 
-export type useTodoProps = {
-  todo: Todo;
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+import { TodoType, TodoContextType, TodoProviderType } from '../types/todo';
+
+const TodoContext = createContext({} as TodoContextType);
+
+export const useTodo = () => {
+  return useContext(TodoContext);
 };
 
-const useTodos = ({ todo, todos, setTodos }: useTodoProps) => {
-  const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<string>(todo.todo);
+export const TodoProvider = ({ children }: TodoProviderType) => {
+  const [todo, setTodo] = useState<string>('');
+  const [todos, setTodos] = useState<TodoType[]>([]); 
+  const [completedTodos, setCompletedTodos] = useState<TodoType[]>([]);
 
-  const handleDone = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-      )
-    );
-  };
-
-  const handleDelete = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const handleEdit = (event: React.FormEvent, id: number) => {
-    event.preventDefault();
-
-    setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
-    );
-    setIsEdit(false);
-  };
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // enable focus on, to be able to write in the input immediately
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [isEdit]);
-
-  return {
-    setEditTodo,
-    handleDone,
-    handleDelete,
-    handleEdit,
-    inputRef,
-    editTodo,
-    isEdit,
-    setIsEdit,
-  };
+  return (
+    <TodoContext.Provider
+      value={{
+        todo,
+        setTodo,
+        todos,
+        setTodos,
+        completedTodos,
+        setCompletedTodos,
+      }}
+    >
+      {children}
+    </TodoContext.Provider>
+  );
 };
 
-export default useTodos;

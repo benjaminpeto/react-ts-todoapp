@@ -1,16 +1,16 @@
+import { useEffect, useRef, useState } from "react";
 import { MdDone } from "react-icons/md";
 import { Draggable } from "react-beautiful-dnd";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 import "./style.css";
-import useTodos from "../../hooks/useTodo";
-import { Todo } from "../../types/todo";
+import { TodoType } from "../../types/todo";
 
 interface SingleTodoProps {
   index: number;
-  todo: Todo;
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  todo: TodoType;
+  todos: TodoType[];
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
 }
 
 const SingleTodo: React.FC<SingleTodoProps> = ({
@@ -19,16 +19,36 @@ const SingleTodo: React.FC<SingleTodoProps> = ({
   todos,
   setTodos,
 }: SingleTodoProps) => {
-  const {
-    setEditTodo,
-    handleDone,
-    handleDelete,
-    handleEdit,
-    inputRef,
-    editTodo,
-    isEdit,
-    setIsEdit,
-  } = useTodos({ todo, todos, setTodos });
+  const [editTodo, setEditTodo] = useState<string>(todo.todo);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+
+  const handleEdit = (event: React.FormEvent, id: number) => {
+    event.preventDefault();
+
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
+    );
+    setIsEdit(false);
+  };
+
+  const handleDone = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
+  };
+
+  const handleDelete = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // enable focus on, to be able to write in the input immediately
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isEdit]);
 
   return (
     <Draggable draggableId={todo.id.toString()} index={index}>

@@ -2,14 +2,14 @@ import React from 'react'
 
 import './style.css';
 import SingleTodo from '../SingleTodo';
-import { Todo } from '../../types/todo';
+import { TodoType } from '../../types/todo';
 import { Droppable } from 'react-beautiful-dnd';
 
 interface TodoListProps {
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  completedTodos: Todo[];
-  setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  todos: TodoType[];
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+  completedTodos: TodoType[];
+  setCompletedTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
