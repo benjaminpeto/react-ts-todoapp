@@ -28,19 +28,14 @@ describe('<InputField />, rendering components', () => {
     ).toBe(true);
   });
 
-  /* describe('the user populates the input', () => {
-    const item: string = 'Task 1';
-    beforeEach(() => {
-      const input = wrapper.find('input').first();
-      input.simulate('change', {
-        target: { value: item }
-      })
+  describe('the user populates the input', () => {
+    it('should update the state property input `some task`', () => {
+      wrapper.find('input[type="input"]').simulate('change', {
+        target: {
+          value: 'some task',
+        },
+      });
+      expect(wrapper.find('input[type="input"]').prop('value')).toEqual('some task');
     });
-    it('should update the state property `item`', () => {
-      expect(
-        wrapper.context(item)
-      ).toEqual(item);
-    });
-  }); */
+  })
 });
-
