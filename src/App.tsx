@@ -4,7 +4,7 @@ import './App.css';
 
 import { InputField } from './components/inputField';
 import  TodoList from './components/TodoList';
-import { useTodo } from './hooks/useTodo';
+import { useTodo } from './context/useTodo';
 
 const App: React.FC = () => {
   const {
@@ -15,7 +15,8 @@ const App: React.FC = () => {
     completedTodos,
     setCompletedTodos,
     handleAddTodo,
-    onDragEnd } = useTodo();
+    onDragEnd,
+} = useTodo();
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

@@ -69,4 +69,3 @@ export const TodoProvider = ({ children }: TodoProviderType) => {
     </TodoContext.Provider>
   );
 };
-

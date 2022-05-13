@@ -8,7 +8,10 @@ interface InputProps {
   handleAddTodo: (e: React.FormEvent) => void;
 }
 
-export const InputField = ({ todo, setTodo,handleAddTodo }: InputProps) => {
+export const InputField = ({
+  todo,
+  setTodo,
+  handleAddTodo }: InputProps) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 

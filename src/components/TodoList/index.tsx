@@ -12,7 +12,13 @@ interface TodoListProps {
   setCompletedTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
+const TodoList: React.FC<TodoListProps> = ({
+  todos,
+  setTodos,
+  completedTodos,
+  setCompletedTodos,
+}) => {
+
   return (
       <div className="container">
         <Droppable droppableId={'droppable-0'}>
