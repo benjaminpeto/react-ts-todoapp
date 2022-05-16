@@ -4,7 +4,7 @@ import './style.css';
 
 interface InputProps {
   todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>; //What the heck, at least VSCode helps to figure out what types I need
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
   handleAddTodo: (e: React.FormEvent) => void;
 }
 
