@@ -43,23 +43,21 @@ describe('<InputField />, rendering components', () => {
     });
   });
 
-  /* describe('and then submits the form', () => {
-      beforeEach(() => {
-      const input = wrapper.find('input');
-      input.simulate('change', {
-        target: { value: '' }
-      })
-    });
+  describe('and then submits the form', () => {
     it('clicks the submit button', () => {
-      wrapper.find('button[type="submit"]').simulate('click');
+      wrapper.find('.input').simulate('submit', {
+        preventDefault: () => {},
+      }); // 'click' cannot be simulated, as button is inside a form, USE 'submit'
       expect(onSubmit).toHaveBeenCalledTimes(1);
-    })
-    it('then should clear the input field', () => {
-      const input = wrapper.find('input');
-      input.simulate('change', {
-        target: { value: '' }
-      })
-      expect(wrapper.find('input[type="input"]').prop('value')).toEqual('');
     });
-  }); */
+    // -------------- this not working still ----------------------------------------
+    // it('then should clear the input field', () => {
+    //   const input = wrapper.find('input[type="input"]');
+    //   input.simulate('change', {
+    //     target: { value: '' }
+    //   });
+    //   expect(wrapper.find('input[type="input"]').prop('value')).toEqual('');
+    // });
+    // -------------- this not working still ----------------------------------------
+  });
 });
