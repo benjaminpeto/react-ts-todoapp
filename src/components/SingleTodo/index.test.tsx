@@ -10,7 +10,7 @@ const todoItem = {
   todo: 'Task 1',
   isDone: false
 };
-const allTodoItems = [
+const mockTodoItems = [
   {
     id: 1,
     todo: 'Task 1',
@@ -27,19 +27,28 @@ const allTodoItems = [
     isDone: false
   },
 ];
-let allTodoItemsStateChange = jest.fn();
+let mockTodoItemsStateChange = jest.fn();
 
 describe('<SingleTodo />, rendering components', () => {
   let wrapper: ShallowWrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <SingleTodo index={indexNumber} todo={todoItem} todos={allTodoItems} setTodos={allTodoItemsStateChange} />
+      <SingleTodo
+        index={indexNumber}
+        todo={todoItem}
+        todos={mockTodoItems}
+        setTodos={mockTodoItemsStateChange}
+      />
     );
   });
-
-  it('rendering `form` element without crashing', () => {
-    shallow(<SingleTodo index={indexNumber} todo={todoItem} todos={allTodoItems} setTodos={allTodoItemsStateChange} />);
+    
+  it('should have an `form` element', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <form />
+      )
+    ).toBe(false);
   });
   it('should NOT have an `input` element', () => {
     expect(

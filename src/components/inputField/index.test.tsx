@@ -19,9 +19,6 @@ describe('<InputField />, rendering components', () => {
     );
   });
 
-  it('rendering `form` element without crashing', () => {
-    shallow(<InputField handleAddTodo={onSubmit} setTodo={todoSetState} todo={todoItem} />);
-  });
   it('should have an `input` element', () => {
     expect(
       wrapper.containsMatchingElement(
