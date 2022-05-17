@@ -52,11 +52,12 @@ describe('<InputField />, rendering components', () => {
     });
     // -------------- this not working still ----------------------------------------
     // it('then should clear the input field', () => {
-    //   const input = wrapper.find('input[type="input"]');
-    //   input.simulate('change', {
+    //   let form = wrapper.find('input');
+    //   form.simulate('submit', {
     //     target: { value: '' }
     //   });
-    //   expect(wrapper.find('input[type="input"]').prop('value')).toEqual('');
+    //   wrapper.find('input');
+    //   expect(wrapper.find('input').props().value).toEqual('');
     // });
     // -------------- this not working still ----------------------------------------
   });
