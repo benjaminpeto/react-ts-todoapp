@@ -8,13 +8,11 @@ export type TodoType = {
 };
 
 export type TodoContextType = {
-  todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>;
   todos: TodoType[] | [];
   setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
   completedTodos: TodoType[];
-  setCompletedTodos:  React.Dispatch<React.SetStateAction<TodoType[]>>;
-  handleAddTodo: (e: React.FormEvent) => void;
+  setCompletedTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+  addTodo: (newTodo: string) => void;
   onDragEnd: (result: DropResult) => void;
 };
 

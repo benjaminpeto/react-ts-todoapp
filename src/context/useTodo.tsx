@@ -1,6 +1,6 @@
 import { useState, createContext, useContext } from "react";
 
-import { TodoType, TodoContextType, TodoProviderType } from '../types/todo';
+import { TodoType, TodoContextType, TodoProviderType } from "../types/todo";
 import { DropResult } from "react-beautiful-dnd";
 
 const TodoContext = createContext({} as TodoContextType);
@@ -10,31 +10,31 @@ export const useTodo = () => {
 };
 
 export const TodoProvider = ({ children }: TodoProviderType) => {
-  const [todo, setTodo] = useState<string>('');
-  const [todos, setTodos] = useState<TodoType[]>([]); 
+  const [todos, setTodos] = useState<TodoType[]>([]);
   const [completedTodos, setCompletedTodos] = useState<TodoType[]>([]);
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if(todo) {
-      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
-      setTodo('');
-    }
+  const addTodo = (todoName: string) => {
+    setTodos([
+      ...todos,
+      { id: Date.now(), todo: todoName, isDone: false },
+    ]);
   };
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
 
-    if(!destination) return;
-    if(destination.droppableId === source.droppableId &&
-      destination.index === source.index) return;
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
 
     let add;
     let active = todos;
     let complete = completedTodos;
 
-    if(source.droppableId === 'droppable-0') {
+    if (source.droppableId === "droppable-0") {
       add = active[source.index];
       active.splice(source.index, 1);
     } else {
@@ -42,7 +42,7 @@ export const TodoProvider = ({ children }: TodoProviderType) => {
       complete.splice(source.index, 1);
     }
 
-    if(destination.droppableId === 'droppable-0') {
+    if (destination.droppableId === "droppable-0") {
       active.splice(destination.index, 0, add);
     } else {
       complete.splice(destination.index, 0, add);
@@ -50,18 +50,16 @@ export const TodoProvider = ({ children }: TodoProviderType) => {
 
     setCompletedTodos(complete);
     setTodos(active);
-  }
+  };
 
   return (
     <TodoContext.Provider
       value={{
-        todo,
-        setTodo,
         todos,
         setTodos,
         completedTodos,
         setCompletedTodos,
-        handleAddTodo,
+        addTodo,
         onDragEnd,
       }}
     >
